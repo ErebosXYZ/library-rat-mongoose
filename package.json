@@ -8,12 +8,25 @@
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.6.1",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "mongoose": "^5.12.14",
+    "mongoose": "^5.13.23",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.7"
-  }
+    "nodemon": "^2.0.22"
+  },
+  "description": "Queremos implementar una app que permite añadir libros y escritores. Nos comentan que es imporante poder cambiar los datos de los libros y los escritores de forma independiente, por lo que hemos implementado las dos entidades en dos colecciones diferentes, que van a ser relacionadas entre si a partir de su ObjectID.",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErebosXYZ/library-rat-mongoose.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ErebosXYZ/library-rat-mongoose/issues"
+  },
+  "homepage": "https://github.com/ErebosXYZ/library-rat-mongoose#readme"
 }

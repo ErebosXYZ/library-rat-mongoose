@@ -3,6 +3,7 @@ var router = express.Router();
 
 const Book = require('../models/book');
 // importar Authors
+const Author = require('../models/author')
 
 /* GET users listing. */
 router.get('/add-author', function (req, res, next) {
@@ -15,16 +16,29 @@ router.post('/add-author', async function (req, res) {
   // 1. Importar el modelo (Authors) al principio del fichero
 
   // 2. Recuperar todos los campos del POST
-
+  console.log(req.body);
   // 3. Crear un nuevo documento en base de datos usando Mongoose
+  const { firstName, familyName, dateBirth, dateDeath } = req.body;
 
+  try {
+    await Author.create({
+      firstName: firstName,
+      familyName: familyName,
+      dateBirth: dateBirth,
+      dateDeath: dateDeath
+    })
+    res.send('Author added succesfully!')
+  } catch (error){
+    console.error(error);
+    res.status(500).send('Something went wrong adding author to the database');
+  }
   // La forma que tenéis de momento de comprobar los autores añadidos a la base de datos es mediante console.log o el plugin de mongodb o ir a Atlas. Otra forma es devolver el autor que acabais de crear en formato JSON
 })
 
 
 router.get('/add-book', async (req, res) => {
   // Recuperar todos los autores de la coleccion Authors
-  const authors = {} // TODO: Iteración 2
+  const authors = await Author.find(); // TODO: Iteración 2
   res.render('add-book', {
     authors
   })
@@ -50,7 +64,7 @@ router.post('/add-book', async (req, res) => {
 })
 
 router.get('/books', async (req, res) => {
-  const books = await Book.find(); // Iteración 4
+  const books = await Book.find().populate('author', 'firstName familyName'); // Iteración 4
 
   console.log("Libros a enviar a la vista: ", books);
 
